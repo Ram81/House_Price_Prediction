@@ -2,7 +2,7 @@ from numpy import loadtxt, zeros, ones, array, linspace, logspace
 from pylab import scatter, show, title, xlabel, ylabel, plot, contour
 
 #Load the Dataset
-data = loadtxt('Dataset/ex1data.txt',delimiter=',')
+data = loadtxt('Dataset/ex1data1.txt',delimiter=',')
 
 #plot dataset
 scatter(data[:,0], data[:,1], marker='x', c='b')
