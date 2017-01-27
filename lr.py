@@ -44,7 +44,6 @@ scatter(data[:,0], data[:,1], marker='x', c='b')
 title('Profit Distribution')
 xlabel('Population in 10,000s')
 ylabel('Profit in $10,000s')
-show()
 
 #Fitting Linear Regression model
 X = data[:,0]
