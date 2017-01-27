@@ -78,8 +78,33 @@ X2 = array([1,7.5])
 print('For population of 35,000 we predict profit of %f' % (Predict(X1,theta) * 10000))
 print('For population of 75,000 we predict profit of %f' % (Predict(X2,theta) * 10000))
 
+#plot the results
+result = it.dot(theta).flatten()
+plot(data[:,0], result)
+show()
 
+#Grid over which we will calculate J
+theta0_vals = linspace(-10, 10, 100)
+theta1_vals = linspace(-1, 4, 100)
 
+#Jval initialized to 0's
+J_vals = zeros(shape=(theta0_vals.size, theta1_vals.size))
+
+for t1,element in enumerate(theta0_vals):
+	for t2,element2 in enumerate(theta1_vals):
+		thetaT = zeros(shape=(2,1))
+		thetaT[0][0] = element
+		thetaT[1][0] =element2
+		J_vals[t1,t2] = compute_Cost(it,Y,thetaT)
+
+#plot COntours
+J_vals = J_vals.T
+
+contour(theta0_vals,theta1_vals,J_vals,logspace(-2,3,20))
+xlabel('Theta 0')
+ylabel('THeta 1')
+scatter(theta[0][0],theta[1][0])
+show()
 
 
 
