@@ -1,4 +1,4 @@
-from numpy import loadtxt, zeros, ones, logspace, linspace, mean, std, arange
+from numpy import loadtxt, zeros, ones, logspace, linspace, mean, std, arange, array
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from pylab import plot, show, xlabel, ylabel
@@ -36,18 +36,16 @@ def compute_Cost(X, y, theta):
 	return J
 
 
-def gradient_Descent(X, y, theta, alpha, num_iters):
+def gradient_Descent(X, y, theta, alpha, iters):
     '''
-    Performs gradient descent to learn theta
-    by taking num_items gradient steps with learning
-    rate alpha
+    	Performs gradient descent to learn theta by taking iters gradient steps with learning rate alpha
     '''
     m = y.size
-    J_history = zeros(shape=(num_iters, 1))
+    J_history = zeros(shape=(iters, 1))
 
-    for i in range(num_iters):
+    for i in range(iters):
 
-        predictions = X.dot(theta)
+        h_theta = X.dot(theta)
 
         theta_size = theta.size
 
@@ -56,7 +54,7 @@ def gradient_Descent(X, y, theta, alpha, num_iters):
             temp = X[:, it]
             temp.shape = (m, 1)
 
-            errors_x1 = (predictions - y) * temp
+            errors_x1 = (h_theta - y) * temp
 
             theta[it][0] = theta[it][0] - alpha * (1.0 / m) * errors_x1.sum()
 
@@ -64,13 +62,17 @@ def gradient_Descent(X, y, theta, alpha, num_iters):
 
     return theta, J_history
 
+
+def Predict(X,theta):
+	prediction = X.dot(theta)
+	return prediction	
 			
 
 #Load Dataset
 data = loadtxt('Dataset/ex1data2.txt',delimiter=',')
 
 #Plot The Data
-'''fig = plt.figure()
+fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 n = 100
 
@@ -84,8 +86,8 @@ ax.set_xlabel('Size of House')
 ax.set_ylabel('Number of Bedrooms')
 ax.set_zlabel('Price of House')
 
-#plt.show()
-'''
+plt.show()
+
 
 #input & output vectors
 X = data[:,:2]
@@ -116,12 +118,16 @@ print(theta)
 print()
 print(J_history)
 
+plot(arange(iterations),J_history)
+xlabel('Iterations')
+ylabel('Cost Function')
+show()
 
 
+#Predicting Price for a new house of  165 sq-ft & 3 bedroom
+X1 = array([1.0, ((1650.0 - mean_r[0]) / std_r[0]), ((3 - mean_r[1]) / std_r[1])])
 
-
-
-
+print('Predicted Price of a house of  1650 sq-ft with 3 bedrooms is %f '% (Predict(X1,theta)))
 
 
 
