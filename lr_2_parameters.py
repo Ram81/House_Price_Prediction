@@ -128,12 +128,3 @@ show()
 X1 = array([1.0, ((1650.0 - mean_r[0]) / std_r[0]), ((3 - mean_r[1]) / std_r[1])])
 
 print('Predicted Price of a house of  1650 sq-ft with 3 bedrooms is %f '% (Predict(X1,theta)))
-
-
-
-
-
-
-
-
-
