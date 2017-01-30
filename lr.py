@@ -104,18 +104,3 @@ xlabel('Theta 0')
 ylabel('THeta 1')
 scatter(theta[0][0],theta[1][0])
 show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
